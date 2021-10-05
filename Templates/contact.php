@@ -25,8 +25,8 @@ include_once('defaults/head.php');
                     echo "
                     <div class='col-sm-4 col-md-3'>
                         <div class='card'>
-                        <div class='card-body text-center'>";
-                        echo "<a href='" . $data['id'] . "'>
+                            <div class='card-body text-center'>";
+                                echo "<a href='" . $data['id'] . "'>
                                     <img class='product-img img-responsive center-block' src='" . $data['image'] . "'/>
                                 </a>";
                                 echo "<div class='card-title mb-3'>" . $data['title'] . "</div>";
@@ -38,6 +38,7 @@ include_once('defaults/head.php');
 
                     // echo "title: " . $data['title'] . "<br>";
                     // echo "img: " . $data['image'] . "<br>";
+                    // echo "id: " . $data['id'] . 
                 }
                 echo "</div>";
             ?>
@@ -47,6 +48,7 @@ include_once('defaults/head.php');
     <hr>
     <?php
     include_once('defaults/footer.php');
+
     ?>
 </div>
 
