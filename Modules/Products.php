@@ -15,7 +15,7 @@ function getProduct(int $productId)
     $sth = $pdo->prepare(" SELECT * FROM product WHERE id = $productId ");
     $sth->execute();
     $result = $sth->fetchAll(PDO::FETCH_CLASS, "product");
-    return $result; 
+    return $result[0]; 
 }
 
 function getAllProducts() {
@@ -35,4 +35,24 @@ function deleteProduct(int $id){
     $sth = $pdo->prepare('DELETE FROM product WHERE id = ?');
     $sth->bindParam(1, $id);
     $sth->execute();
+}
+
+function updateProduct(string $title, string $imgPath, string $productDescription, int $productId){
+    global $pdo;
+    $sth = $pdo->prepare(
+        "UPDATE product SET
+        name= :t,
+        picture= :ip,
+        description = :d
+        WHERE id = :pi 
+        "
+    );
+    $sth->execute(
+        array(
+            "t" => $title,
+            "ip" => $imgPath,
+            "d" => $productDescription,
+            "pi" => $productId
+        )
+    );
 }

@@ -77,7 +77,7 @@ function getUserName(){
         $query = $pdo->prepare("SELECT id, username, role, memberSince, email FROM users WHERE username = '$seshU_N'");
         $query->execute();
         $user = $query->fetchAll(PDO::FETCH_CLASS, "user");
-        return $user;
+        return $user[0];
     }
 }
 

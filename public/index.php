@@ -9,8 +9,7 @@ define("DOC_ROOT", realpath(dirname(__DIR__)));
 define("TEMPLATE_ROOT", realpath(DOC_ROOT . "/Templates"));
 
 session_start();  
-$getUser = getUserName();
-$user = $getUser[0];
+$user = getUserName();
 if(isset($_SESSION['username'])) {
     $_SESSION["role"] = $user->role;
 }
@@ -32,8 +31,7 @@ switch ($params[1]) {
 
             if (isset($_GET['product_id'])) {
                 $productId = $_GET['product_id'];
-                $getProduct = getProduct($productId);
-                $product = $getProduct[0];
+                $product = getProduct($productId);
                 $titleSuffix = ' | ' . $product->name;
 
                 if(isset($_POST['addReview'])) {

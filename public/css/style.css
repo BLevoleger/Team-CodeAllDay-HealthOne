@@ -35,6 +35,8 @@ body {
   width: 60%;
 }
 .producten {
+  margin-top: 15% ;
+  margin-bottom: 5% ;
   height: 350px;
 }
 .card-img-top2 {
@@ -82,4 +84,25 @@ body {
 .dropdown-content a:hover {
   color: white;
   background-color: green;
+}
+
+
+.editProduct > input{
+  width: 50%;
+  height: auto;
+}
+.editProduct > textarea{
+  width: 50%;
+  height: 150px;
+}
+.Cat{
+  margin-top: 5% ;
+  margin-bottom: 5% ;
+}
+.NoLoginTable{
+  margin-left: auto;
+}
+
+.NoLoginUl {
+  margin-left: auto;
 }

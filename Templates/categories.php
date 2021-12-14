@@ -12,7 +12,7 @@ include_once('defaults/head.php');
     ?>
 
     <?php
-    echo "<div class='row gy-3 '>";
+    echo "<div class='row gy-3 Cat'>";
     foreach ($categories as &$data) {    
      echo "
             <div class='col-sm-4 col-md-3'>

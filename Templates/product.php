@@ -62,8 +62,6 @@
                                                 <td style='border: 1px solid black;'>
                                                     <p style='font-size: 9px'>$data->time</p>
                                                 </td>
-                                                <br><br>
-                                
                                             </li>
                                         </tr>
                                     ";
@@ -117,11 +115,11 @@
                             echo "<h4>no user reviews yet!</h4>";
                         } else {
                             echo "
-                            <nav class='reviewList'>
-                                <ul style='width: 100vw'>
+                            <nav class='reviewList NoLoginUl'>
+                                <ul style='width: 50vw'>
                             ";
                                 echo "
-                                    <table style='width: 25vw' >
+                                    <table class='NoLoginTable' style='width: 25vw' >
                                         <tr>
                                             <th>User</th>
                                             <th>Review</th>
@@ -140,8 +138,6 @@
                                                 <td style='border: 1px solid black;'>
                                                     <p style='font-size: 9px'>$data->time</p>
                                                 </td>
-                                                <br><br>
-                                
                                             </li>
                                         </tr>
                                     ";

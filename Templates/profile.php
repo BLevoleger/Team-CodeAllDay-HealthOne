@@ -30,35 +30,32 @@
                                 } else {
                                     echo "
                                     <nav class='reviewList'>
-                                        <ul>
+                                    <ul>
+                                        <table>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Review</th>
+                                            </tr>
                                     ";
+                                    foreach ($userReviews as &$data) {
                                         echo "
-                                            <table>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th>Review</th>
-                                                </tr>
-                                        ";
-                                        foreach ($userReviews as &$data) {
-                                            echo "
-                                                <tr>
-                                                    <li>
-                                                        <td style='border: 1px solid black; width:100px'>
-                                                            <p style='font-size: 11px'>$data->product_name</p>
-                                                            <img src='$data->picture' alt='Product Img' width='75px' height='auto'/><br>
-                                                            <p style='font-size: 11px'>Stars : $data->stars</p>
-                                                        </td>
-                                                        <td style='border: 1px solid black; width: 200px'>
-                                                            <p style='font-size: 11px'>$data->username</p>
-                                                            <p style='font-size: 11px'>$data->description</p>
-                                                        </td>
-                                                        <td style='border: 1px solid black;'>
-                                                            <p style='font-size: 9px'>$data->time</p>
-                                                        </td>
-                                                        <br><br>
+                                        <li>
+                                            <tr>
+                                                <td style='border: 1px solid black; width:100px'>
+                                                    <p style='font-size: 11px'>$data->product_name</p>
+                                                    <img src='$data->picture' alt='Product Img' width='75px' height='auto'/><br>
+                                                    <p style='font-size: 11px'>Stars : $data->stars</p>
+                                                </td>
+                                                <td style='border: 1px solid black; width: 200px'>
+                                                    <p style='font-size: 11px'>$data->username</p>
+                                                    <p style='font-size: 11px'>$data->description</p>
+                                                </td>
+                                                <td style='border: 1px solid black;'>
+                                                    <p style='font-size: 9px'>$data->time</p>
+                                                </td>
 
-                                                    </li>
-                                                </tr>
+                                            </tr>
+                                        </li>
                                             ";
                                         }
                                         echo "
