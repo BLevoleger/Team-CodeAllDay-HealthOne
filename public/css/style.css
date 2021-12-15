@@ -35,8 +35,8 @@ body {
   width: 60%;
 }
 .producten {
-  margin-top: 15% ;
-  margin-bottom: 5% ;
+  margin-top: 15%;
+  margin-bottom: 5%;
   height: 350px;
 }
 .card-img-top2 {
@@ -86,20 +86,19 @@ body {
   background-color: green;
 }
 
-
-.editProduct > input{
+.editProduct > input {
   width: 50%;
   height: auto;
 }
-.editProduct > textarea{
+.editProduct > textarea {
   width: 50%;
   height: 150px;
 }
-.Cat{
-  margin-top: 5% ;
-  margin-bottom: 5% ;
+.Cat {
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
-.NoLoginTable{
+.NoLoginTable {
   margin-left: auto;
 }
 

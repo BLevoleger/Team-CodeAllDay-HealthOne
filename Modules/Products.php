@@ -44,8 +44,7 @@ function updateProduct(string $title, string $imgPath, string $productDescriptio
         name= :t,
         picture= :ip,
         description = :d
-        WHERE id = :pi 
-        "
+        WHERE id = :pi"
     );
     $sth->execute(
         array(
