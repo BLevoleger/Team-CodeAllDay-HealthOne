@@ -1,25 +1,13 @@
 
 <?php
-if(isset($_POST['verzenden'])){
-    print_r($_FILES);
-}
 
-$message=""; 
-if (isset($_POST['verzenden'])) 
-{ $result=fileupload(); 
-    if($result===true) {
-        echo "Image bewaard!"; 
-    } else { 
-        echo "Image niet bewaard op de server."; 
-        echo $message; 
-    } 
-}
 
-function fileupload():bool 
+function fileupload()
 { 
     global $message; 
     //check file extension 
     $allowed=['gif','png','jpg']; 
+    var_dump($_FILES);
     $filename=$_FILES['userfile']['name'];
     //original filename 
     $ext=pathinfo($filename,PATHINFO_EXTENSION); 
@@ -27,15 +15,16 @@ function fileupload():bool
         $message="Sorry alleen gif,png of jpg files toegestaan"; 
         return false; 
     }   //rename file to unique name 
-    $target_dir= "../upload/"; 
+    $target_dir= "../public/img/uploads/"; 
     $target_file= $_FILES['userfile']['name']; 
-    do { $target_file=$target_dir.md5($target_file).".$ext"; 
+    do { $target_file=md5($target_file).".$ext"; 
     } 
-    while (file_exists($target_file)); 
+    while (file_exists($target_dir.$target_file)); 
     //move uploaded file 
-    if(move_uploaded_file($_FILES['userfile']['tmp_name'], $target_file)) { 
+    if(move_uploaded_file($_FILES['userfile']['tmp_name'], $target_dir.$target_file)) { 
+        var_dump("/img/uploads/$target_file");
         $message.="Upload gelukt, bestandsnaam is ".$target_file; 
-        return true; 
+        return "/img/uploads/$target_file"; 
     } else { 
         $message.="Sorry, upload niet gelukt";
          return false;

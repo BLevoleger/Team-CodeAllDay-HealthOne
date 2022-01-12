@@ -37,7 +37,22 @@ if(isset($_SESSION['role']) == '2') {
                     if(empty($_POST['productName'] || $_POST['imgPath'] || $_POST['productDescription'])) {
                         echo "Vul alle velden in!";
                     }else {
-                        updateProduct($_POST['productName'], $_POST['imgPath'], $_POST['productDescription'], $productId);
+                        
+                        if(isset($_POST['update'])){
+                            print_r($_FILES);
+                        }
+                        
+                        $message=""; 
+                        if (isset($_POST['update'])) 
+                        { $result=fileupload(); 
+                            if($result===false) {
+                                echo "Image niet bewaard!"; 
+                            } else { 
+                                var_dump($result);
+                                updateProduct($_POST['productName'], $result, $_POST['productDescription'], $productId);
+                                echo $message; 
+                            } 
+                        }
                         header('Location: /admin/products');
                     }
                 }
