@@ -16,6 +16,13 @@
                     <form class='editProduct' method='POST'>
                         <input type='text' name='productName' value='$editProduct->name'><br>
                         <img style='height: 250px; width: auto' class=producten img-responsive card-img-top2 src='$editProduct->picture'><br>
+                        
+                            <form enctype='multipart/form-data' method='POST'>
+                                <label>Send this file:</label>
+                                <input name='userfile' type='file' />
+                                <input type='submit' name='verzenden' value='Send File' />
+                            </form>
+
                         <input type='text' name='imgPath' value='$editProduct->picture' ><br>
                         <textarea name='productDescription'>$editProduct->description</textarea>
                         <input class='btn btn-primary' type='submit' name='update' value='UPDATE'>

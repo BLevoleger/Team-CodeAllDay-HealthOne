@@ -4,6 +4,7 @@ require '../Modules/Products.php';
 require '../Modules/Database.php';
 require '../Modules/user.php';
 require '../Modules/review.php';
+require '../Modules/uploadFile.php';
 
 define("DOC_ROOT", realpath(dirname(__DIR__)));
 define("TEMPLATE_ROOT", realpath(DOC_ROOT . "/Templates"));
@@ -102,6 +103,7 @@ switch ($params[1]) {
         default:
             $titleSuffix = ' | Home';
             include_once "../Templates/home.php";
+            
 }
 
 function getTitle() {
