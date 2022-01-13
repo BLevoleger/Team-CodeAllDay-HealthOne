@@ -47,17 +47,20 @@ if(isset($_SESSION['role']) == '2') {
                         { $result=fileupload(); 
                             if($result===false) {
                                 echo "Image niet bewaard!"; 
-                            } else { 
+                            } else{ //als de IMG leeg is dan alleen de titel bijwerken ..  if (empty())
                                 var_dump($result);
                                 updateProduct($_POST['productName'], $result, $_POST['productDescription'], $productId);
                                 echo $message; 
                             } 
                         }
-                        header('Location: /admin/products');
+                        // header('Location: /admin/products');
                     }
                 }
                 include_once TEMPLATE_ROOT . '/admin/editProduct.php';
                 break;
+                case 'addProduct':
+                    include_once TEMPLATE_ROOT . '/admin/addProduct.php';
+                    break;
             default:
                 include_once TEMPLATE_ROOT . '/admin/home.php';
         }
