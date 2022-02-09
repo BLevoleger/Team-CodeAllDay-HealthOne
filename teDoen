@@ -1,8 +1,15 @@
 Contact Page maken,                                                               (circa 1 uur)
   tijden en dagen vanuit database misschien halen en aanpasbaar in admin menu 
+      tijden erin zetten en tonen, locatie tonen door middel van een foto google map
 
 Zorgen dat je de edit product goed kan gebruiken zonder een foto toe te voegen (30 min)
-
+      de functie checken of die goed werkt en een standaard waarde van de foto meegegevn wanneer foto niet geselecteerd is.
+      
 Users admin kunnen maken, in de Admin menu (30 min)
+      Functie aanmaken en overnemen van Themaweek code, in de htacces dingen aanpassen om admin te maken.
+      admin index aanpassen naar behoren.
 
 Profile page bijwerken alles werkend maken etc (45-60 min)
+      zorgen dat je een profile image kan toe voegen, nu nog niet werkend, kan overnemen van Themaweek project.
+      username, profile image bijwerken (overnemen)
+      wachtwoord kunnen aanpassen in het profiel
