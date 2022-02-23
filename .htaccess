@@ -4,6 +4,11 @@ RewriteRule ^categories/([0-9]+)/product/([0-9]+)?$ /public/index.php?category_i
 RewriteRule ^admin/products/([0-9]+)/delete/?$ /public/index.php?product_id=$1&delete=true    [NC,L]    # Handle product requests
 RewriteRule ^admin/editProduct/([0-9]+)/?$ /public/index.php?product_id=$1&edit=true    [NC,L]    # Handle product requests
 
+RewriteRule ^admin/users/([0-9]+)/addAdmin/?$ /public/index.php?user_id=$1&addAdmin=true [NC,L]    # Handle product requests
+RewriteRule ^admin/users/([0-9]+)/removeAdmin/?$ /public/index.php?user_id=$1&removeAdmin=true [NC,L]    # Handl
+
+RewriteRule ^proileEdit/([0-9]+)/delete/?$ /public/index.php?review_id=$1&delete=true [NC,L]    # Handl
+
 # Rewrite all the default paths to public e.g. /css/style.css -> /public/css/style.css
 RewriteCond %{REQUEST_URI} !/public
 RewriteRule ^(.*)$ public/$1 [L]

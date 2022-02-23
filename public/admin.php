@@ -1,6 +1,6 @@
 <?php
 global $params;
-if(isset($_SESSION['role']) == '2') {
+if(isset($_SESSION['role']) == 2) {
     switch ($params[2]) {
         case 'products':
             $allProducts = getAllProducts();
@@ -28,6 +28,20 @@ if(isset($_SESSION['role']) == '2') {
 
                 $allUsers = getAllUsers();
                 include_once TEMPLATE_ROOT . '/admin/users.php';
+                if(isset($_GET['user_id'])){
+                    $userId = $_GET['user_id'];
+                    if(isset($_GET['addAdmin'])){
+                        $addAdmin = $_GET['addAdmin'];
+                        if($addAdmin){
+                            admin(2, $userId);
+                        }
+                    }else if(isset($_GET['removeAdmin'])){
+                        $removeAdmin = $_GET['removeAdmin'];
+                        if($removeAdmin){
+                            admin(0, $userId);
+                        }
+                    }
+                }
                 break;
             case 'editProduct':
                 $productId = $_GET['product_id'];
@@ -48,7 +62,6 @@ if(isset($_SESSION['role']) == '2') {
                             if($result===false) {
                                 echo "Image niet bewaard!"; 
                             } else{ //als de IMG leeg is dan alleen de titel bijwerken ..  if (empty())
-                                var_dump($result);
                                 updateProduct($_POST['productName'], $result, $_POST['productDescription'], $productId);
                                 echo $message; 
                             } 

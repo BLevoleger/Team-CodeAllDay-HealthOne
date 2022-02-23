@@ -2,7 +2,7 @@
     function getUserReviews(int $userId){
         global $pdo;
         $query = $pdo->prepare(
-            "SELECT review.description, review.stars, review.time, review.user_id,
+            "SELECT review.id, review.description, review.stars, review.time, review.user_id,
             users.username,
             product.id AS 'product_id', product.name AS 'product_name', product.picture
             FROM review
@@ -41,6 +41,16 @@
                 "s" => $stars,
                 "pi" => $productId,
                 "ui" => $userId
+            )
+        );
+    }
+
+    function deleteReview($id){
+        global $pdo;
+        $sth = $pdo>prepare("DELETE FROM review WHERE id = :id");
+        $sth->execute(
+            array(
+                "id" => $id
             )
         );
     }

@@ -88,4 +88,27 @@ function getAllUsers() {
     $result = $sth->fetchAll(PDO::FETCH_CLASS, "user");
     return $result;
 }
+
+function updateProfile(string $username, string  $img, int $id){
+    global $pdo;
+    $sth = $pdo->prepare("UPDATE users SET username = :u, PfPic = :img WHERE id = $id");
+    $sth->execute(
+        array(
+            "u" => $username,
+            "img" => $img
+        )
+    );
+    $_SESSION['username'] = $username;
+}
+
+function admin($value, $id){
+    global $pdo;
+    $sth = $pdo->prepare("UPDATE users SET role = :ia WHERE id = $id");
+    $sth->execute(
+        array(
+            "ia" => $value
+        )
+    );
+}
+
 ?>

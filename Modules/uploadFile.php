@@ -7,7 +7,6 @@ function fileupload()
     global $message; 
     //check file extension 
     $allowed=['gif','png','jpg']; 
-    var_dump($_FILES);
     $filename=$_FILES['userfile']['name'];
     //original filename 
     $ext=pathinfo($filename,PATHINFO_EXTENSION); 
@@ -22,7 +21,6 @@ function fileupload()
     while (file_exists($target_dir.$target_file)); 
     //move uploaded file 
     if(move_uploaded_file($_FILES['userfile']['tmp_name'], $target_dir.$target_file)) { 
-        var_dump("/img/uploads/$target_file");
         $message.="Upload gelukt, bestandsnaam is ".$target_file; 
         return "/img/uploads/$target_file"; 
     } else { 

@@ -24,7 +24,6 @@ switch ($params[1]) {
     case 'categories':
         $titleSuffix = ' | Categories';
         
-        
         if (isset($_GET['category_id'])) {
             $categoryId = $_GET['category_id'];
             $products = getProducts($categoryId);
@@ -98,6 +97,18 @@ switch ($params[1]) {
                 
                 $titleSuffix = ' | profileEdit';
                 include_once "../Templates/profileEdit.php";
+
+                echo $_GET['review_id'];
+                echo $_GET['delete'];
+                if(isset($_GET['review_id'])){
+                    if(isset($_GET['delete'])) {
+                        $reviewID = $_GET['review_id'];
+                        $delete = $_GET['delete'];
+                        if($delete){
+                            deleteReview($reviewID);
+                        }
+                    }
+                }
             }
             break;
         default:
