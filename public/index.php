@@ -94,14 +94,9 @@ switch ($params[1]) {
             if(!isset($_SESSION['username'])) {
                 include_once "../Templates/error404.php";
             } else {
-                
-                $titleSuffix = ' | profileEdit';
-                include_once "../Templates/profileEdit.php";
-
-                echo $_GET['review_id'];
-                echo $_GET['delete'];
                 if(isset($_GET['review_id'])){
                     if(isset($_GET['delete'])) {
+                        header("Location: /profileEdit");
                         $reviewID = $_GET['review_id'];
                         $delete = $_GET['delete'];
                         if($delete){
@@ -109,12 +104,47 @@ switch ($params[1]) {
                         }
                     }
                 }
-            }
+                
+                $user = getUserName();
+                if(isset($_POST['update'])){
+                    $result=fileupload();
+                        if($result===false) {
+                            updateProfile($_POST['username'], $user->PfPic, $user->id);
+                        } else{ 
+                            updateProfile($_POST['username'], $result, $user->id);
+                        }
+                        header("Location: /profile");
+                    }
+                    
+                    if(count($_POST)>0) {
+                        $user = getUser();
+
+                        var_dump($user);
+
+                        if(isset($_POST['UpdatePass'])){
+                            if($_POST["password"] == $user->password && $_POST["newpass"] == $_POST["newpassRP"] ){
+                                $newpass = $_POST['newpass'];
+                                global $pdo;
+                                $sth = $pdo->prepare("UPDATE users SET password='$newpass' WHERE id = $user->id");
+                                $sth->execute();
+                                header("Location: /profile");
+                            } else {
+                                echo "PASS FAULT";
+                            }
+                        }
+                        // password
+                        // newpass
+                        // newpassRP
+                        // UpdatePass
+                    }   
+                    
+                    $titleSuffix = ' | profileEdit';
+                    include_once "../Templates/profileEdit.php";
+                }
             break;
         default:
             $titleSuffix = ' | Home';
             include_once "../Templates/home.php";
-            
 }
 
 function getTitle() {

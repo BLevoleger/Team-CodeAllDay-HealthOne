@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 14 dec 2021 om 10:05
+-- Gegenereerd op: 07 apr 2022 om 21:53
 -- Serverversie: 10.4.22-MariaDB
 -- PHP-versie: 7.3.33
 
@@ -43,6 +43,55 @@ INSERT INTO `category` (`id`, `title`, `description`, `image`) VALUES
 (2, 'Crosstrainer', '', 'crosstrainer.jpg'),
 (3, 'Hometrainer', '', 'hometrainer.jpg'),
 (4, 'Loopband', '', 'loopband.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `days`
+--
+
+CREATE TABLE `days` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `days`
+--
+
+INSERT INTO `days` (`id`, `name`) VALUES
+(1, 'Sunday'),
+(2, 'Monday'),
+(3, 'Tuesday'),
+(4, 'Wednesday'),
+(5, 'Thursday'),
+(6, 'Friday'),
+(7, 'Saturday');
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `hours`
+--
+
+CREATE TABLE `hours` (
+  `id` int(11) NOT NULL,
+  `hour` varchar(255) NOT NULL,
+  `dayId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `hours`
+--
+
+INSERT INTO `hours` (`id`, `hour`, `dayId`) VALUES
+(1, 'Closed', 1),
+(2, '9:00-22.00', 2),
+(3, '09:00-22:00', 3),
+(4, '09:00-22:00', 4),
+(5, '09:00-22:00', 5),
+(6, '09:00-23:30', 6),
+(7, '14:00-23:30', 7);
 
 -- --------------------------------------------------------
 
@@ -96,7 +145,6 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`id`, `description`, `stars`, `time`, `product_id`, `user_id`) VALUES
-(1, 'goed', 2, '2021-12-11 00:00:00', 5, 11),
 (2, 'goed', 3, '2021-12-11 09:53:13', 5, 11),
 (8, 'Goed werkend apparaat!', 4, '2021-12-13 21:03:45', 5, 11);
 
@@ -109,6 +157,7 @@ INSERT INTO `review` (`id`, `description`, `stars`, `time`, `product_id`, `user_
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `PfPic` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` int(1) DEFAULT NULL,
@@ -119,12 +168,10 @@ CREATE TABLE `users` (
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `memberSince`) VALUES
-(6, 'a', '', 'b', NULL, '2021-12-05 08:44:53'),
-(11, 'BeauLev', 'blevoleger@gmail.com', '123qwe', 2, '2021-12-07 13:44:53'),
-(12, 'John', 'johndoe@gmail.com', 'Doe', NULL, '2021-12-08 16:33:53'),
-(13, 'Ampie04', 'amberschipper452@gmail.com', '12', NULL, '2021-12-11 10:00:53'),
-(14, 'Jlevoleger', 'jlevoleger@casema.nl', 'downie', NULL, '2021-12-11 23:28:53');
+INSERT INTO `users` (`id`, `username`, `PfPic`, `email`, `password`, `role`, `memberSince`) VALUES
+(11, 'BeauLev', '/img/uploads/bf542a0439b4cb4a88ea5d7ae27e2b68.jpg', 'blevoleger@gmail.com', '123qwe', 2, '2021-12-07 13:44:53'),
+(12, 'John', '', 'johndoe@gmail.com', 'Doe', NULL, '2021-12-08 16:33:53'),
+(13, 'Ampie04', '', 'amberschipper452@gmail.com', '12', NULL, '2021-12-11 10:00:53');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -135,6 +182,19 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `memberSince
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `days`
+--
+ALTER TABLE `days`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `hours`
+--
+ALTER TABLE `hours`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `dayId` (`dayId`);
 
 --
 -- Indexen voor tabel `product`
@@ -168,10 +228,22 @@ ALTER TABLE `category`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT voor een tabel `days`
+--
+ALTER TABLE `days`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT voor een tabel `hours`
+--
+ALTER TABLE `hours`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT voor een tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT voor een tabel `review`
@@ -188,6 +260,12 @@ ALTER TABLE `users`
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
+
+--
+-- Beperkingen voor tabel `hours`
+--
+ALTER TABLE `hours`
+  ADD CONSTRAINT `hours_ibfk_1` FOREIGN KEY (`dayId`) REFERENCES `days` (`id`);
 
 --
 -- Beperkingen voor tabel `product`

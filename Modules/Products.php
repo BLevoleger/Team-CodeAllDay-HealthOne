@@ -55,3 +55,28 @@ function updateProduct(string $title, string $imgPath, string $productDescriptio
         )
     );
 }
+
+function addProduct(string $productName, string $image, string $description, int $category_id){
+    global $pdo;
+    $sth = $pdo->prepare("INSERT INTO product (name, picture, description, category_id) VALUES (:pN, :img, :desc, :category)");
+    $sth->execute(
+        array(
+            "pN" => $productName,
+            "img" => $image,
+            "desc" => $description,
+            "category" => $category_id
+        )
+    );
+}
+
+function getAllTimes() {
+    global $pdo;
+    $sth = $pdo->prepare(
+        "SELECT days.id, days.name, hours.hour AS hour FROM days
+        LEFT JOIN hours
+        ON hours.dayId=days.id
+        ORDER BY days.id");
+    $sth->execute();
+    $result = $sth->fetchAll(PDO::FETCH_CLASS, "time");
+    return $result;
+}

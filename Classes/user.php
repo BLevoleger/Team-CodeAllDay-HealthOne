@@ -5,6 +5,7 @@ class User
 {
     public $id;
     public $username;
+    public $PfPic;
     public $email;
     public $password;
     public $role;

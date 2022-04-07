@@ -13,7 +13,7 @@
 
             <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
                 <div class="card p-4">
-                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary rounded"> <img src="img/logo/profile.png" class="rounded-circle" height="100" width="100" /></button> <span class="name mt-3"><?=$user->username?></span>
+                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-secondary rounded"> <img src=" <?= $user->PfPic ?> " class="rounded-circle" height="115" width="125" /></button> <span class="name mt-3"><?=$user->username?></span>
                         <div class="d-flex flex-row justify-content-center align-items-center gap-2"> <span class="idd1">UserId <?=$user->id?></span></div>
                         <div class="d-flex flex-row justify-content-center align-items-center mt-3"><b> User reviews </b></div>
                         <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 

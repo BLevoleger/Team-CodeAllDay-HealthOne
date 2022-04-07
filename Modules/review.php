@@ -47,11 +47,13 @@
 
     function deleteReview($id){
         global $pdo;
-        $sth = $pdo>prepare("DELETE FROM review WHERE id = :id");
+        $sth = $pdo->prepare("DELETE FROM review WHERE id = :id");
         $sth->execute(
             array(
                 "id" => $id
             )
         );
     }
+
+
 ?>

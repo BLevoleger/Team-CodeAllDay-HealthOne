@@ -74,7 +74,18 @@ function getUserName(){
     if(isset($_SESSION['username'])) {
         $seshU_N = $_SESSION['username'];
         global $pdo;
-        $query = $pdo->prepare("SELECT id, username, role, memberSince, email FROM users WHERE username = '$seshU_N'");
+        $query = $pdo->prepare("SELECT id, username, PfPic, role, memberSince, email FROM users WHERE username = '$seshU_N'");
+        $query->execute();
+        $user = $query->fetchAll(PDO::FETCH_CLASS, "user");
+        return $user[0];
+    }
+}
+
+function getUser(){
+    if(isset($_SESSION['username'])) {
+        $seshU_N = $_SESSION['username'];
+        global $pdo;
+        $query = $pdo->prepare("SELECT * FROM users WHERE username = '$seshU_N'");
         $query->execute();
         $user = $query->fetchAll(PDO::FETCH_CLASS, "user");
         return $user[0];
@@ -89,7 +100,7 @@ function getAllUsers() {
     return $result;
 }
 
-function updateProfile(string $username, string  $img, int $id){
+function updateProfile(string $username, string $img, int $id){
     global $pdo;
     $sth = $pdo->prepare("UPDATE users SET username = :u, PfPic = :img WHERE id = $id");
     $sth->execute(
