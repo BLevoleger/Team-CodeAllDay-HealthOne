@@ -1,6 +1,6 @@
 <?php
 global $params;
-if(isset($_SESSION['role']) === 2) {
+if(($_SESSION['role']) == 2) {
     switch ($params[2]) {
         case 'products':
             $allProducts = getAllProducts();
